@@ -17,7 +17,7 @@
             color: #E0E6EF; /* 밝은 회색 텍스트 */
             margin: 0;
             padding: 0;
-            overflow: hidden; 
+            overflow: hidden; /* 페이지 전체 스크롤 방지 (프레젠테이션 모드 유지) */
             position: relative;
             height: 100vh; /* 뷰포트 전체 높이 */
             display: flex; /* 슬라이드 중앙 정렬을 위해 */
@@ -41,12 +41,12 @@
         .slide {
             width: 90%;
             max-width: 1200px;
-            min-height: 70vh;
-            padding: 60px 80px;
+            height: 90vh; /* 슬라이드 최대 높이 지정 (스크롤링 영역 확보) */
+            padding: 30px 50px; /* 패딩 조정 */
             box-sizing: border-box;
             display: none; /* JS로 active 클래스가 붙은 슬라이드만 표시 */
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start; /* 스크롤 시 내용을 위에서부터 표시 */
             align-items: center;
             text-align: left;
             opacity: 0;
@@ -60,6 +60,7 @@
         .slide.active {
             display: flex;
             opacity: 1;
+            overflow-y: auto; /* 내용이 넘칠 경우 슬라이드 내부에서 스크롤 허용 */
         }
         
         /* --- 3. 텍스트 스타일 --- */
@@ -466,8 +467,9 @@
         @media screen and (max-width: 1024px) {
             /* 슬라이드 내부 패딩 및 기본 크기 조정 */
             .slide {
-                padding: 40px 30px;
-                min-height: 85vh; /* 세로 공간 더 활용 */
+                padding: 20px 20px; /* Reduced padding */
+                height: 95vh; /* Maximize vertical space for scrolling */
+                max-width: 100%;
             }
 
             /* 텍스트 크기 조정 */
